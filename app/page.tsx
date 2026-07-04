@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <main className="main-h-screen bg-gray-950 text-white flex flex-col items-center justify-center p-8">
@@ -16,7 +14,7 @@ export default function Home() {
           { label: "Docker", desc: "Multi-stage build · SHA-tagged · GHCR" },
           { label: "Staging", desc: "Auto-deploy on main merge · Smoke test" },
           { label: "Production", desc: "Manual approval · OIDC · Rollback" },
-        ].map((item, index) => (
+        ].map((item) => (
           <div
             key={item.label}
             className="bg-gray-900 border border-gray-800 rounded-lg p-4 flex items-center gap-4"

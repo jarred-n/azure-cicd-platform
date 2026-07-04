@@ -8,27 +8,7 @@ A production-style CI/CD pipeline built with GitHub Actions, deploying a contain
 
 ## Pipeline Architecture
 
-```
-                    ┌─────────────────────────────────────────┐
-                    │              Pull Request                │
-                    │  Lint → Test → Coverage → npm audit     │
-                    │  Docker build check → Trivy image scan  │
-                    └──────────────────┬──────────────────────┘
-                                       │ merge to main
-                    ┌──────────────────▼──────────────────────┐
-                    │            Staging Pipeline              │
-                    │  Build image → Push to GHCR (sha-tag)   │
-                    │  Deploy to Azure Container Apps          │
-                    │  Smoke test → Auto-rollback on failure  │
-                    └──────────────────┬──────────────────────┘
-                                       │ git tag v*.*.*
-                    ┌──────────────────▼──────────────────────┐
-                    │           Production Pipeline            │
-                    │  Promote staging-verified image (retag)  │
-                    │  ⏸ Manual approval gate                  │
-                    │  Deploy → Smoke test                      │
-                    └───────────────────────────────────────────┘
-```
+![Pipeline Architecture](public/pipeline-architecture.svg)
 
 ## What This Project Demonstrates
 

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#8c959f"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="760" height="560" fill="#ffffff"/>
+
+  <!-- ============ PULL REQUEST ============ -->
+  <rect x="120" y="30" width="520" height="96" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <rect x="120" y="30" width="5" height="96" rx="2.5" fill="#0969da"/>
+  <text x="146" y="60" fill="#0969da" font-size="15" font-weight="700">Pull Request</text>
+  <text x="146" y="86" fill="#1f2328" font-size="13">Lint → Test → Coverage → npm audit</text>
+  <text x="146" y="108" fill="#1f2328" font-size="13">Docker build check → Trivy image scan</text>
+
+  <!-- connector 1 -->
+  <line x1="380" y1="126" x2="380" y2="176" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="298" y="138" width="164" height="24" rx="12" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="380" y="154" text-anchor="middle" fill="#656d76" font-size="11.5">merge to main</text>
+
+  <!-- ============ STAGING ============ -->
+  <rect x="120" y="180" width="520" height="118" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <rect x="120" y="180" width="5" height="118" rx="2.5" fill="#1a7f37"/>
+  <text x="146" y="210" fill="#1a7f37" font-size="15" font-weight="700">Staging Pipeline</text>
+  <text x="146" y="236" fill="#1f2328" font-size="13">Build image → Push to GHCR (sha-tag)</text>
+  <text x="146" y="258" fill="#1f2328" font-size="13">Deploy to Azure Container Apps</text>
+  <text x="146" y="280" fill="#1f2328" font-size="13">Smoke test → Auto-rollback on failure</text>
+
+  <!-- connector 2 -->
+  <line x1="380" y1="298" x2="380" y2="348" stroke="#8c959f" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="298" y="310" width="164" height="24" rx="12" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="380" y="326" text-anchor="middle" fill="#656d76" font-size="11.5">git tag v*.*.*</text>
+
+  <!-- ============ PRODUCTION ============ -->
+  <rect x="120" y="352" width="520" height="150" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <rect x="120" y="352" width="5" height="150" rx="2.5" fill="#8250df"/>
+  <text x="146" y="382" fill="#8250df" font-size="15" font-weight="700">Production Pipeline</text>
+  <text x="146" y="408" fill="#1f2328" font-size="13">Promote staging-verified image (retag)</text>
+
+  <rect x="146" y="422" width="212" height="26" rx="13" fill="#fff8c5" stroke="#d4a72c"/>
+  <text x="252" y="439" text-anchor="middle" fill="#7d4e00" font-size="12" font-weight="700">⏸&#160; Manual approval gate</text>
+
+  <text x="146" y="478" fill="#1f2328" font-size="13">Deploy → Smoke test</text>
+</svg>

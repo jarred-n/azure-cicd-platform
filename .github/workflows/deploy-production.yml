@@ -12,11 +12,31 @@ permissions:
   id-token: write
 
 jobs:
+  promote-image:
+    name: Promote Staging Image to Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Retag existing SHA image with release version
+        run: |
+          # tag 指向的 commit，就是当初 staging 部署时构建镜像用的 commit
+          SHA_IMAGE="ghcr.io/${{ github.repository }}:sha-${{ github.sha }}"
+          RELEASE_IMAGE="ghcr.io/${{ github.repository }}:${{ github.ref_name }}"
+
+          # buildx imagetools 直接在 registry 端复制 tag，不拉取、不重建
+          docker buildx imagetools create --tag "$RELEASE_IMAGE" "$SHA_IMAGE"
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
+    needs: promote-image
     environment:
-      name: production   
+      name: production
       url: ${{ steps.get-url.outputs.url }}
 
     steps:

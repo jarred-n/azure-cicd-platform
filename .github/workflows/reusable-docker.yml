@@ -52,7 +52,7 @@ jobs:
       - name: Build ${{ inputs.push && 'and push' || 'only' }}
         uses: docker/build-push-action@v6
         with:
-          context: ./
+          context: .
           push: ${{ inputs.push }}
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha

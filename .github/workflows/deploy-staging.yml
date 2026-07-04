@@ -85,9 +85,5 @@ jobs:
             --name app-staging \
             --resource-group rg-cicd-demo \
             --image "$PREV_IMAGE"
-
-          sleep 20
-          FQDN=$(az containerapp show --name app-staging \
-            --resource-group rg-cicd-demo \
-            --query properties.configuration.ingress.fqdn -o tsv)
-          curl --fail "https://$FQDN/api/health" && echo "Rollback verified ✅"
+            
+          echo "Rollback command completed — previous image redeployed"

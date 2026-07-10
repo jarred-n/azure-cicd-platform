@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: docker-check
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build image for scanning
         run: docker build -t scan-target:local .
